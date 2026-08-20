@@ -1,0 +1,93 @@
+/*
+ * Accented characters for the Portuguese language, driven by the host's dead keys.
+ *
+ * Copyright (c) 2022 Rafael Romão (original approach)
+ * SPDX-License-Identifier: MIT
+ *
+ * Usage: hold the ACCENT layer key and tap one of the 12 accent keys.
+ *
+ * ABNT2 (Brazil) dead keys are DIRECT (no AltGr needed), so each macro is just
+ * <dead key> + <letter>. The `mod-morph` wrapper handles lowercase vs. Shift.
+ *
+ * Pick your host layout here:
+ *   ACCENT_ABNT2 1 -> Portuguese (Brazil) ABNT2
+ *   ACCENT_ABNT2 0 -> Portuguese (Portugal)
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+
+#define ACCENT_ABNT2 1
+
+#if ACCENT_ABNT2
+    // ABNT2 (Brazil): acute=`[` key, grave=Shift+`[`, tilde=`'` key, circumflex=Shift+`'`
+    #define DK_ACUTE LBKT
+    #define DK_GRAVE LBRC
+    #define DK_TILDE SQT
+    #define DK_CIRC  DQT
+#else
+    // PT-PT (Portugal): acute=`]` key, grave=Shift+`]`, tilde=`\` key, circumflex=Shift+`\`
+    #define DK_ACUTE RBKT
+    #define DK_GRAVE RBRC
+    #define DK_TILDE BSLH
+    #define DK_CIRC  PIPE
+#endif
+
+/ {
+    #define ACCENTED_KEY(NAME, LABEL_U, LABEL_L, LABEL, KEY, DEAD_KEY) \
+        ac_##NAME##_l: ac_##NAME##_l { \
+            wait-ms = <0>; \
+            tap-ms = <0>; \
+            label = LABEL_L; \
+            compatible = "zmk,behavior-macro"; \
+            #binding-cells = <0>; \
+            bindings = <&macro_tap &kp DEAD_KEY>, <&macro_tap &kp KEY>; \
+        }; \
+        ac_##NAME##_u: ac_##NAME##_u { \
+            wait-ms = <0>; \
+            tap-ms = <0>; \
+            label = LABEL_U; \
+            compatible = "zmk,behavior-macro"; \
+            #binding-cells = <0>; \
+            bindings \
+                = <&macro_release &kp LSHFT> \
+                , <&macro_tap &kp DEAD_KEY> \
+                , <&macro_press &kp LSHFT> \
+                , <&macro_tap &kp KEY> \
+                , <&macro_release &kp LSHFT> \
+                ; \
+        }; \
+        ac_##NAME: ac_##NAME { \
+            label = LABEL; \
+            compatible = "zmk,behavior-mod-morph"; \
+            #binding-cells = <0>; \
+            bindings = <&ac_##NAME##_l>, <&ac_##NAME##_u>; \
+            mods = <(MOD_LSFT|MOD_RSFT)>; \
+            keep-mods = <(MOD_LSFT|MOD_RSFT)>; \
+        };
+
+    accents {
+        ACCENTED_KEY(agrv, "À", "à", "àÀ", A, DK_GRAVE)
+        ACCENTED_KEY(aacu, "Á", "á", "áÁ", A, DK_ACUTE)
+        ACCENTED_KEY(atil, "Ã", "ã", "ãÃ", A, DK_TILDE)
+        ACCENTED_KEY(acir, "Â", "â", "âÂ", A, DK_CIRC)
+        ACCENTED_KEY(eacu, "É", "é", "éÉ", E, DK_ACUTE)
+        ACCENTED_KEY(ecir, "Ê", "ê", "êÊ", E, DK_CIRC)
+        ACCENTED_KEY(iacu, "Í", "í", "íÍ", I, DK_ACUTE)
+        ACCENTED_KEY(oacu, "Ó", "ó", "óÓ", O, DK_ACUTE)
+        ACCENTED_KEY(otil, "Õ", "õ", "õÕ", O, DK_TILDE)
+        ACCENTED_KEY(ocir, "Ô", "ô", "ôÔ", O, DK_CIRC)
+        ACCENTED_KEY(uacu, "Ú", "ú", "úÚ", U, DK_ACUTE)
+
+        // ç is a dedicated key on Portuguese layouts (no dead key needed);
+        // uppercase Ç is handled by the OS via the held Shift.
+        ac_ccdi: ac_ccdi {
+            wait-ms = <0>;
+            tap-ms = <0>;
+            label = "ç";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp SEMI>;
+        };
+    };
+};
