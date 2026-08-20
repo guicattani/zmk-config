@@ -125,11 +125,11 @@
 
             display-name = "accents";
             bindings = <
-&none     &none     &none     &none     &none     &none                      &none  &none     &none     &none     &none      &none
-&ac_otil  &ac_atil  &ac_ocir  &ac_ecir  &ac_acir  &ac_agrv  &ac_agrv                &ac_acir  &ac_ecir  &ac_ocir  &ac_atil   &ac_otil
-&ac_ccdi  &ac_uacu  &ac_oacu  &ac_iacu  &ac_eacu  &ac_aacu  &ac_aacu                &ac_eacu  &ac_iacu  &ac_oacu  &ac_uacu   &ac_ccdi
-&none     &none     &none     &none     &none     &none     &none     &none  &none  &none     &none     &kp BSLH  &kp SLASH  &none
-                    &none     &none     &none     &none     &none     &none  &none  &none     &none     &trans
+&none     &none     &none     &none     &none     &none                      &none             &none           &none      &none     &none      &none
+&ac_otil  &ac_atil  &ac_ocir  &ac_ecir  &ac_acir  &ac_agrv  &ac_agrv                           &ac_acir        &ac_ecir   &ac_ocir  &ac_atil   &ac_otil
+&ac_ccdi  &ac_uacu  &ac_oacu  &ac_iacu  &ac_eacu  &ac_aacu  &ac_aacu                           &ac_eacu        &ac_iacu   &ac_oacu  &ac_uacu   &ac_ccdi
+&none     &none     &none     &none     &none     &none     &none     &none  &kp LEFT_BRACKET  &kp LEFT_BRACE  &kp COLON  &kp SEMI  &kp SLASH  &none
+                    &none     &none     &none     &none     &none     &none  &none             &none           &none      &trans
             >;
         };
     };
