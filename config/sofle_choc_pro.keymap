@@ -64,11 +64,11 @@
             //               |     |      |      |      |        |  |       |      |       |       |      |
 
             bindings = <
-&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                        &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                        &trans  &trans  &trans  &trans   &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                        &trans  &trans  &trans  &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans     &trans     &trans  &trans  &trans  &trans  &trans   &trans
-                &trans  &trans  &trans  &trans  &kp ENTER  &kp ENTER  &trans  &trans  &trans  &trans
+&none  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                        &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11
+&none  &none   &none   &none   &none   &none   &none                         &none   &none   &none   &none    &kp F12
+&none  &none   &none   &none   &none   &none   &none                         &none   &none   &none   &none    &none
+&none  &none   &none   &none   &none   &none   &trans     &trans     &none   &none   &none   &none   &none    &none
+               &none   &none   &none   &trans  &kp ENTER  &kp ENTER  &trans  &none   &none   &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_PREV C_NEXT>;
@@ -85,11 +85,11 @@
             //                |      |       |       |      |      |  |      |      |      |       |      |
 
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                        &trans  &trans    &trans    &trans     &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &trans        &kp PG_UP                     &trans    &kp UP    &trans     &trans  &trans
-&trans      &trans        &kp QUESTION  &trans        &trans        &kp CLCK      &kp PG_DN                     &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
-&trans      &trans        &trans        &trans        &trans        &trans        &trans     &trans     &trans  &trans    &trans    &trans     &trans  &trans
-                          &trans        &trans        &trans        &trans        &kp ENTER  &kp ENTER  &trans  &trans    &trans    &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                        &none   &none     &none     &none      &none  &none
+&none       &none         &none         &none         &none         &none         &kp PG_UP                     &none     &kp UP    &none      &none  &none
+&none       &none         &kp QUESTION  &none         &none         &kp CLCK      &kp PG_DN                     &kp LEFT  &kp DOWN  &kp RIGHT  &none  &none
+&none       &none         &none         &none         &none         &none         &trans     &trans     &none   &none     &none     &none      &none  &none
+                          &none         &none         &none         &trans        &kp ENTER  &kp ENTER  &trans  &none     &none     &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_PREV C_NEXT>;
