@@ -50,7 +50,9 @@
                         &kp LEFT_CONTROL  &kp LEFT_GUI  &kp LEFT_ALT  &mo LOWER  &kp SPACE   &kp SPACE   &mo RAISE  &kp RCTRL  &kp RALT   &mo ACCENT
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_PREV C_NEXT>;
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_DN C_VOL_UP>,
+                <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         lower_layer {
